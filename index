@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dʘɴ＇t ʟo߀ᴋ ɐʇ ʇɥǝ．．．？</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              mono: ['"VT323"', 'monospace'],
+              typewriter: ['"Special Elite"', 'cursive'],
+              sans: ['"Noto Sans KR"', 'sans-serif'],
+            },
+            colors: {
+              horror: {
+                black: '#050505',
+                dark: '#0a0a0a',
+                red: '#ff0000',
+                blood: '#8a0000',
+                gray: '#333333',
+                terminal: '#33ff00',
+                static: '#e0e0e0',
+                moon: '#e6e6fa',
+                moonlight: '#aaccff',
+              }
+            },
+            animation: {
+              'glitch-1': 'glitch1 2.5s infinite linear alternate-reverse',
+              'glitch-2': 'glitch2 3s infinite linear alternate-reverse',
+              'scanline': 'scanline 8s linear infinite',
+              'flicker': 'flicker 0.15s infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              glitch1: {
+                '0%': { clipPath: 'inset(40% 0 61% 0)' },
+                '20%': { clipPath: 'inset(92% 0 1% 0)' },
+                '40%': { clipPath: 'inset(43% 0 1% 0)' },
+                '60%': { clipPath: 'inset(25% 0 58% 0)' },
+                '80%': { clipPath: 'inset(54% 0 7% 0)' },
+                '100%': { clipPath: 'inset(58% 0 43% 0)' }
+              },
+              glitch2: {
+                '0%': { clipPath: 'inset(25% 0 58% 0)' },
+                '20%': { clipPath: 'inset(54% 0 7% 0)' },
+                '40%': { clipPath: 'inset(58% 0 43% 0)' },
+                '60%': { clipPath: 'inset(40% 0 61% 0)' },
+                '80%': { clipPath: 'inset(92% 0 1% 0)' },
+                '100%': { clipPath: 'inset(43% 0 1% 0)' }
+              },
+              scanline: {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(100%)' }
+              },
+              flicker: {
+                '0%': { opacity: '0.9' },
+                '50%': { opacity: '1.0' },
+                '100%': { opacity: '0.9' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #050505;
+        overflow-x: hidden;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #111; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333; 
+        border: 1px solid #000;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
+      .crt::before {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 50;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+      }
+    </style>
+</head>
+<body class="min-h-screen bg-horror-black text-horror-static font-mono relative selection:bg-horror-moon selection:text-black crt overflow-hidden">
+
+    <!-- Scanline & Noise Overlay -->
+    <div class="fixed inset-0 pointer-events-none z-[60] bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] opacity-10 mix-blend-overlay"></div>
+    
+    <!-- Vignette -->
+    <div class="fixed inset-0 pointer-events-none z-[40] bg-[radial-gradient(circle_at_center,transparent_50%,rgba(0,0,0,0.8)_100%)]"></div>
+
+    <!-- THE MOON -->
+    <div class="fixed top-[-5%] left-1/2 -translate-x-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full bg-horror-moon opacity-10 shadow-[0_0_150px_rgba(230,230,250,0.5)] z-0 pointer-events-none blur-sm animate-float">
+        <div class="absolute inset-0 rounded-full opacity-40 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] mix-blend-multiply"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 container mx-auto px-4 py-12 md:py-20 max-w-7xl">
+        
+        <!-- Header -->
+        <header class="mb-24 text-center space-y-6 relative">
+            <div class="inline-block p-2 mb-4 animate-pulse text-horror-moon/50">
+                <!-- Eye Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-9xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-b from-white via-horror-moon to-horror-gray drop-shadow-[0_0_20px_rgba(255,255,255,0.3)] font-typewriter">
+                Dʘɴ＇t ʟo߀ᴋ<br class="md:hidden" /> ɐʇ ʇɥǝ．．．？
+            </h1>
+            
+            <div class="w-full max-w-2xl mx-auto h-px bg-gradient-to-r from-transparent via-horror-moon to-transparent opacity-30"></div>
+            
+            <p class="text-horror-moon/60 font-mono text-xs md:text-sm tracking-[0.5em] animate-pulse">
+                THE MOON IS WATCHING
+            </p>
+        </header>
+
+        <!-- Character List Container -->
+        <main id="character-list" class="flex flex-col gap-6 pb-20 max-w-4xl mx-auto w-full">
+            <!-- Items injected by JS -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center text-horror-gray text-xs font-mono tracking-widest opacity-50 pb-10">
+            <p>EST. 199X • DO NOT DISTRIBUTE</p>
+            <p class="mt-2">PHASE: WAXING CRESCENT</p>
+        </footer>
+    </div>
+
+    <!-- Modal Container -->
+    <div id="modal-container" class="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4 overflow-hidden hidden">
+        <!-- Backdrop -->
+        <div id="modal-backdrop" class="absolute inset-0 bg-black/95 backdrop-blur-sm cursor-pointer transition-opacity duration-300 opacity-0">
+            <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+        </div>
+
+        <!-- Modal Content -->
+        <div id="modal-content" class="relative w-full max-w-[95vw] h-[90vh] md:h-[85vh] bg-[#050505] border border-horror-gray shadow-[0_0_100px_rgba(230,230,250,0.1)] flex flex-col transition-all duration-300 opacity-0 scale-95 text-horror-static font-mono overflow-hidden">
+             <!-- Top Bar -->
+             <div class="flex justify-between items-center p-3 border-b border-horror-gray bg-black/80 z-20">
+                <div class="flex items-center gap-2 text-horror-moon/70">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span class="tracking-[0.2em] uppercase text-xs md:text-sm font-bold animate-pulse">Character Record</span>
+                </div>
+                <button id="modal-close-btn" class="hover:text-horror-red transition-colors text-horror-gray px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <!-- Dynamic Body -->
+            <div id="modal-body" class="flex flex-col md:flex-row flex-1 overflow-hidden relative">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        // Data
+        const CHARACTERS = [
+            {
+                id: 'N',
+                name: '니알라토텝',
+                gender: '여성',
+                age: 'UNKNOWN',
+                affiliation: '아우터 갓',
+                appearance: '165cm. 매우 창백한 피부. 눈동자에는 빛이 없다. 존재 자체가 노이즈처럼 느껴진다.',
+                personality: 'ENTP, 7w8. 우아하지만 완전히 종잡을 수 없고 제멋대로. 흥미와 기분에 따라 행동한다.',
+                features: '인간의 모습으로 변신한 니알라토텝. 오너의 조력자 역할을 종종 해주곤 하지만, 재미없어 보이면 도와주지 않는다.',
+                tmi: '니알라토텝의 디자인 후보 중 하나였던 것입니다. 사실 이쪽이 더 마음에 들었는데...',
+                profileImage: 'https://picsum.photos/seed/nyarla-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/nyarla/400/400?grayscale',
+                themeColor: '#828282',
+                quote: "당신의 혼돈, 부디 제게도 보여주시겠어요?"
+            },
+            {
+                id: 'S',
+                name: 'Sky9000',
+                gender: '여성',
+                age: 'System Error',
+                affiliation: '구 인류 군사 AI',
+                appearance: '157cm. 눈은 어두운 곳에서 빛난다. 고양이 귀는 사실 스피커.',
+                personality: 'ISTJ. 귀찮음이 많지만 시킨 일은 한다. 고급 연산을 싫어한다.',
+                features: '군사 통합 AI가 탑재된 안드로이드. 과학 기술이 극도로 발달한 차원 출신.',
+                tmi: '이름은 터미네이터의 스카이넷과 스페이스 오디세이의 HAL 9000을 합친 이름.',
+                profileImage: 'https://picsum.photos/seed/sky9000-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/sky9000/400/400?grayscale',
+                themeColor: '#3fa5f6',
+                quote: "스카이는 지금 바쁩니다. 접근하지 마십시오."
+            },
+            {
+                id: 'D',
+                name: '듀라한',
+                gender: '불명',
+                age: '???',
+                affiliation: '망자의 기사단',
+                appearance: '190cm. 보라색 불꽃은 언제나 타오른다.',
+                personality: '호탕하고 친절하다. 남을 돕길 좋아하지만 섬세함은 부족하다.',
+                features: '목이 베여 죽은 전설의 기사의 영혼이 갑주에 깃든 것.',
+                tmi: '듀라한의 SD를 보고 있으면 게임 \'데드셀\'의 주인공이 생각납니다.',
+                profileImage: 'https://picsum.photos/seed/dullahan-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/dullahan/400/400?grayscale',
+                themeColor: '#8030f3',
+                quote: "와하하! 머리가 없어도 보는 데는 지장 없다오!"
+            },
+            {
+                id: 'B',
+                name: '벨제뷔트',
+                gender: '여성',
+                age: '∞',
+                affiliation: '제7마계',
+                appearance: '164cm. 기분이 좋으면 꼬리가 살랑인다는 것은 절대로 비밀이다.',
+                personality: 'ISFP. 성격이 나쁘지만 은근히 섬세하다. 방해 받는 것을 싫어한다.',
+                features: '용사에 의해 죽었다. 용사를 성가시게 생각한다.',
+                tmi: '꼬리를 넣을까 말까 했는데, 넣길 정말 잘 했다는 생각이 듭니다.',
+                profileImage: 'https://picsum.photos/seed/beelze-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/beelze/400/400?grayscale',
+                themeColor: '#ea150a',
+                quote: "내게서 떨어져라. 오염되기 싫다면."
+            },
+            {
+                id: 'M',
+                name: '마르시아',
+                gender: '여성',
+                age: '21',
+                affiliation: '용사 길드',
+                appearance: '152cm. 키가 클 때는 지났지만 큰 키를 꿈꾼다.',
+                personality: 'ENTP. 활기차고 긍정적. 어딘가 허술한 면이 있다.',
+                features: '마왕과 동귀어진한 용사. 전투는 전부 순수 피지컬을 활용한다.',
+                tmi: '이번엔 용사가 짧은 머리를 가져갔습니다.',
+                profileImage: 'https://picsum.photos/seed/marcia-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/marcia/400/400?grayscale',
+                themeColor: '#fd6319',
+                quote: "어둠 속에서도 길은 분명히 있어요!"
+            },
+            {
+                id: 'R',
+                name: '리안',
+                gender: '남성',
+                age: '23',
+                affiliation: '멸망한 제국',
+                appearance: '163cm. 항상 재수없는 웃음을 흘린다.',
+                personality: 'INTP. 거만하고 자존심이 강하다. 사실은 겁이 많다.',
+                features: '사람의 마음을 조종하는 금지된 힘을 얻었다가 살해당함.',
+                tmi: '어두운 곳을 무서워해서 호텔 복도를 싫어합니다.',
+                profileImage: 'https://picsum.photos/seed/rian-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/rian/400/400?grayscale',
+                themeColor: '#9fd0f5',
+                quote: "거기 누구냐? 썩 물러가지 못해?!"
+            },
+            {
+                id: 'Y',
+                name: '연위',
+                gender: '남성',
+                age: '???',
+                affiliation: '천계',
+                appearance: '187cm. 인간에게 받은 머리 장식을 쓰고 있다.',
+                personality: 'ISTP. 감정이 무디고, 그저 흘러가는 대로 살고 있다.',
+                features: '배신 당해 죽은 수호룡. 모든 일에 체념했다.',
+                tmi: '담뱃대를 무기처럼 사용합니다.',
+                profileImage: 'https://picsum.photos/seed/yeon-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/yeon/400/400?grayscale',
+                themeColor: '#71916a',
+                quote: "보이는 게 다가 아니지. 조심하는 게 좋을 거야."
+            },
+            {
+                id: 'E',
+                name: '엑스케수스',
+                gender: '남성',
+                age: '???',
+                affiliation: '사후 세계 관리국',
+                appearance: '182cm. 헤일로가 녹아내린다. 그림자로 이루어진 팔들이 있다.',
+                personality: 'ESFJ. 햇살 같다. 다정하고 자애로운 성격.',
+                features: '잊혀진 죽음의 신. 뜨개질을 좋아한다.',
+                tmi: '가장 디자인이 마음에 드는 캐입니다. 전투씬이 멋있습니다.',
+                profileImage: 'https://picsum.photos/seed/ex-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/ex/400/400?grayscale',
+                themeColor: '#ffffff',
+                quote: "죽음은 끝이 아닙니다. 또 다른 체크인일 뿐."
+            },
+            {
+                id: 'O',
+                name: '옵저버',
+                gender: '없음',
+                age: 'N/A',
+                affiliation: '[DATA EXPUNGED]',
+                appearance: '형체가 불분명하다. 수많은 눈이 공중에 떠다닌다.',
+                personality: '관찰자적 시점. 개입하지 않으나 모든 것을 기록한다.',
+                features: '호텔의 모든 CCTV와 연결되어 있다. 당신이 보고 있는 이 화면도 그가 보고 있다.',
+                tmi: '눈을 마주치면 3일간 불면증에 시달립니다.',
+                profileImage: 'https://picsum.photos/seed/eye-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/eye/400/400?grayscale',
+                themeColor: '#ff0000',
+                quote: "I SEE YOU.",
+                isRedacted: true
+            },
+            {
+                id: 'V',
+                name: '404',
+                gender: '남성',
+                age: '404',
+                affiliation: '오류 데이터',
+                appearance: '몸의 절반이 노이즈로 덮여있다.',
+                personality: '말이 없고 묵묵히 쓸고 닦는다.',
+                features: '존재하지 않는 방을 청소하러 들어가는 모습이 목격된다.',
+                tmi: '그가 청소한 자리는 존재 자체가 지워집니다.',
+                profileImage: 'https://picsum.photos/seed/glitch-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/glitch/400/400?grayscale',
+                themeColor: '#00ff00',
+                quote: "Found... nothing."
+            },
+            {
+                id: 'G',
+                name: '그림자 소녀',
+                gender: '여성',
+                age: '10',
+                affiliation: '심연',
+                appearance: '검은 드레스를 입은 소녀. 발이 땅에 닿지 않는다.',
+                personality: '순수하지만 잔혹하다. 숨바꼭질을 좋아한다.',
+                features: '복도 끝에서 자주 발견된다.',
+                tmi: '절대 술래를 해서는 안 됩니다.',
+                profileImage: 'https://picsum.photos/seed/ghost-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/ghost/400/400?grayscale',
+                themeColor: '#4a0404',
+                quote: "찾았다."
+            },
+            {
+                id: 'X',
+                name: '실험체 07',
+                gender: '남성',
+                age: '19',
+                affiliation: '폐쇄된 연구소',
+                appearance: '구속복을 입고 있다. 얼굴이 붕대로 감겨있다.',
+                personality: '불안정하다. 주기적으로 발작을 일으킨다.',
+                features: '염력을 사용한다. 통제 불능.',
+                tmi: '진정제 투여가 시급합니다.',
+                profileImage: 'https://picsum.photos/seed/scpx-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/scpx/400/400?grayscale',
+                themeColor: '#ffff00',
+                quote: "머리가... 깨질 것 같아...",
+                isRedacted: true
+            },
+            {
+                id: 'P',
+                name: '도플갱어',
+                gender: '가변',
+                age: '가변',
+                affiliation: '거울 세계',
+                appearance: '당신과 똑같이 생겼다. 좌우가 반전되어 있다.',
+                personality: '당신의 자리를 탐낸다.',
+                features: '거울을 볼 때 조심하세요.',
+                tmi: '이미 당신과 교체되었을지도 모릅니다.',
+                profileImage: 'https://picsum.photos/seed/mirror-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/mirror/400/400?grayscale',
+                themeColor: '#cccccc',
+                quote: "내가 진짜야."
+            },
+            {
+                id: 'Z',
+                name: '더 매니저',
+                gender: '남성',
+                age: '???',
+                affiliation: '호텔 에필로그',
+                appearance: '정장을 입은 신사. 얼굴 부분이 검게 칠해진 것처럼 보이지 않는다.',
+                personality: '정중하지만 절대적인 권위를 가졌다.',
+                features: '호텔의 규칙 그 자체.',
+                tmi: '체크아웃은 허용되지 않습니다.',
+                profileImage: 'https://picsum.photos/seed/boss-full/600/900?grayscale',
+                thumbnail: 'https://picsum.photos/seed/boss/400/400?grayscale',
+                themeColor: '#000000',
+                quote: "영원히 편안하게 모시겠습니다."
+            }
+        ];
+
+        // Helper to create Glitch Text HTML
+        function createGlitchText(text, tagName = 'span', className = '') {
+            return `
+                <${tagName} class="relative inline-block group ${className}">
+                    <span class="relative z-10">${text}</span>
+                    <span class="absolute top-0 left-0 -z-10 w-full h-full text-horror-red opacity-0 group-hover:opacity-70 animate-glitch-1 translate-x-[2px]">${text}</span>
+                    <span class="absolute top-0 left-0 -z-10 w-full h-full text-blue-500 opacity-0 group-hover:opacity-70 animate-glitch-2 -translate-x-[2px]">${text}</span>
+                </${tagName}>
+            `;
+        }
+
+        // Render Character List
+        const listContainer = document.getElementById('character-list');
+        
+        function renderList() {
+            let html = '';
+            CHARACTERS.forEach(char => {
+                const redactedClass = char.isRedacted ? 'bg-horror-red animate-pulse' : 'bg-horror-moon/50';
+                
+                html += `
+                <div 
+                  onclick="openModal('${char.id}')"
+                  class="group relative flex bg-black/60 border border-horror-gray/30 hover:border-horror-moon/50 hover:bg-black/80 transition-all duration-300 cursor-pointer overflow-hidden h-32 md:h-40 w-full shadow-lg"
+                >
+                   <!-- Left: Square Thumbnail -->
+                   <div class="w-32 md:w-40 h-full shrink-0 relative overflow-hidden border-r border-horror-gray/30">
+                      <img 
+                        src="${char.thumbnail}" 
+                        alt="${char.name}"
+                        class="w-full h-full object-cover grayscale contrast-125 brightness-75 group-hover:grayscale-0 transition-all duration-500"
+                      />
+                      <!-- Glitch Overlay on Hover -->
+                      <div class="absolute inset-0 bg-horror-moon/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-200 mix-blend-hard-light"></div>
+                   </div>
+
+                   <!-- Right: Info -->
+                   <div class="flex-1 p-4 md:p-6 flex flex-col justify-center relative">
+                      <!-- Status Dot -->
+                      <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full ${redactedClass}"></div>
+                      
+                      <div class="flex flex-col md:flex-row md:items-baseline md:gap-4 mb-2">
+                        ${createGlitchText(char.name, 'h2', 'text-xl md:text-3xl font-typewriter text-horror-static block group-hover:text-white')}
+                        <span class="hidden md:inline-block text-xs font-mono text-horror-gray group-hover:text-horror-moon/70 transition-colors uppercase tracking-widest">
+                           // ${char.affiliation}
+                        </span>
+                      </div>
+                      
+                      <p class="text-xs md:text-sm text-horror-gray font-mono italic truncate border-l-2 border-horror-gray/50 pl-3 group-hover:border-horror-moon/50 group-hover:text-horror-moon/70 transition-colors w-full md:w-3/4">
+                        "${char.quote}"
+                      </p>
+                   </div>
+                </div>
+                `;
+            });
+            listContainer.innerHTML = html;
+        }
+
+        // Modal Logic
+        const modalContainer = document.getElementById('modal-container');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const modalContent = document.getElementById('modal-content');
+        const modalBody = document.getElementById('modal-body');
+        const closeBtn = document.getElementById('modal-close-btn');
+
+        function openModal(id) {
+            const char = CHARACTERS.find(c => c.id === id);
+            if (!char) return;
+
+            // Build Modal HTML
+            const redactedAlert = char.isRedacted ? 
+                `<div class="mt-8 p-4 border border-horror-red/30 bg-horror-red/5 text-horror-red text-sm font-mono text-center animate-pulse">CAUTION: SUBJECT UNSTABLE</div>` : '';
+
+            modalBody.innerHTML = `
+                <!-- Background faint grid -->
+                <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:20px_20px] pointer-events-none"></div>
+
+                <!-- Left Panel: Full Body / Thigh Up Image -->
+                <div class="w-full md:w-1/3 lg:w-[30%] h-1/3 md:h-full border-b md:border-b-0 md:border-r border-horror-gray bg-black relative overflow-hidden group">
+                     <div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,black)] opacity-50 z-10 pointer-events-none"></div>
+                     
+                     <img 
+                         src="${char.profileImage}" 
+                         alt="${char.name}"
+                         class="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-1000 grayscale contrast-125"
+                     />
+                     
+                     <div class="absolute bottom-4 left-4 z-20">
+                        <h1 class="text-4xl md:text-5xl font-typewriter text-white drop-shadow-md mix-blend-difference">
+                            ${createGlitchText(char.name)}
+                        </h1>
+                     </div>
+                </div>
+
+                <!-- Right Panel: Details - Full Width -->
+                <div class="flex-1 flex flex-col bg-[#080808]/90 overflow-y-auto custom-scrollbar relative z-10">
+                    
+                    <div class="p-8 md:p-12 max-w-5xl mx-auto w-full space-y-12">
+                        
+                        <!-- Quote -->
+                        <div class="border-l-4 border-horror-moon/30 pl-6 py-2">
+                            <p class="text-xl md:text-2xl text-horror-moon/80 font-typewriter italic">
+                                "${char.quote}"
+                            </p>
+                        </div>
+
+                        <!-- Core Stats Grid -->
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 border-y border-horror-gray/30 py-8 bg-white/5 p-6 backdrop-blur-sm">
+                            <div>
+                                <span class="block text-gray-400 text-xs uppercase mb-1 tracking-widest">Gender</span>
+                                <span class="text-xl font-typewriter text-white font-bold">${char.gender}</span>
+                            </div>
+                            <div>
+                                <span class="block text-gray-400 text-xs uppercase mb-1 tracking-widest">Age</span>
+                                <span class="text-xl font-typewriter text-white font-bold">${char.age}</span>
+                            </div>
+                            <div class="col-span-2 md:col-span-1">
+                                <span class="block text-gray-400 text-xs uppercase mb-1 tracking-widest">Affiliation</span>
+                                <span class="text-xl font-typewriter text-white font-bold">${char.affiliation}</span>
+                            </div>
+                        </div>
+
+                        <!-- Detailed Info -->
+                        <div class="space-y-10 font-typewriter text-lg leading-relaxed text-horror-static/90">
+                            
+                            <section>
+                                <h3 class="text-horror-moon text-sm font-mono uppercase mb-3 flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-horror-moon rounded-full"></span> 
+                                    Appearance
+                                </h3>
+                                <p class="pl-5 border-l border-horror-gray/30">${char.appearance}</p>
+                            </section>
+                            
+                            <section>
+                                <h3 class="text-horror-moon text-sm font-mono uppercase mb-3 flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-horror-moon rounded-full"></span> 
+                                    Personality Profile
+                                </h3>
+                                <p class="pl-5 border-l border-horror-gray/30">${char.personality}</p>
+                            </section>
+                            
+                            <section>
+                                <h3 class="text-horror-moon text-sm font-mono uppercase mb-3 flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-horror-moon rounded-full"></span> 
+                                    Notable Features
+                                </h3>
+                                <p class="pl-5 border-l border-horror-gray/30">${char.features}</p>
+                            </section>
+
+                            ${redactedAlert}
+                        </div>
+
+                        <div class="pt-12 text-center">
+                            <div 
+                                class="inline-block w-3 h-3 rounded-full shadow-[0_0_15px_currentColor]"
+                                style="background-color: ${char.themeColor};"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Show Modal
+            modalContainer.classList.remove('hidden');
+            // Trigger animation
+            setTimeout(() => {
+                modalBackdrop.classList.remove('opacity-0');
+                modalContent.classList.remove('opacity-0', 'scale-95');
+                modalContent.classList.add('opacity-100', 'scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modalBackdrop.classList.add('opacity-0');
+            modalContent.classList.remove('opacity-100', 'scale-100');
+            modalContent.classList.add('opacity-0', 'scale-95');
+            
+            setTimeout(() => {
+                modalContainer.classList.add('hidden');
+            }, 300); // Wait for transition
+        }
+
+        // Listeners
+        closeBtn.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', closeModal);
+        
+        // Escape key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modalContainer.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Initialize
+        renderList();
+    </script>
+</body>
+</html>
