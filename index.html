@@ -12,14 +12,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+    <!-- NeoDunggeunmo (Korean Pixel Font) -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/neodgm/neodgm-webfont@latest/neodgm/neodgm.css">
     
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              mono: ['"VT323"', 'monospace'],
-              typewriter: ['"Special Elite"', 'cursive'],
+              // Priority: NeoDunggeunmo for that authentic CRT/Pixel look including Korean
+              mono: ['"NeoDunggeunmo"', '"VT323"', 'monospace'],
+              // Replaced Special Elite with NeoDunggeunmo for Korean compatibility while keeping the naming
+              typewriter: ['"NeoDunggeunmo"', '"Special Elite"', 'cursive'],
               sans: ['"Noto Sans KR"', 'sans-serif'],
             },
             colors: {
