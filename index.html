@@ -112,7 +112,7 @@
       }
     </style>
 </head>
-<body class="min-h-screen bg-horror-black text-horror-static font-mono relative selection:bg-horror-moon selection:text-black crt overflow-hidden">
+<body class="min-h-screen bg-horror-black text-horror-static font-mono relative selection:bg-horror-moon selection:text-black crt overflow-x-hidden">
 
     <!-- Scanline & Noise Overlay -->
     <div class="fixed inset-0 pointer-events-none z-[60] bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] opacity-10 mix-blend-overlay"></div>
@@ -190,6 +190,7 @@
         // Data
         const CHARACTERS = [
             {
+                id: 'SA',
                 name: '한설아',
                 gender: '여성',
                 age: '21',
@@ -199,9 +200,11 @@
                 features: '카나리아의 팀장. 어린 나이에 팀장이 되었다. 몰즈의 엄격한 규칙 아래에 있으면 모두가 안전할 수 있다고 믿고 있기 때문에, 규칙을 기계적으로 따른다. 전투실력과 리더십이 뛰어나다.',
                 profileImage: 'SA_cosboyshot2.png',
                 thumbnail: 'https://picsum.photos/seed/nyarla/400/400?grayscale',
+                themeColor: '#e0e0e0',
                 quote: "전원, 질서를 지켜주세요."
             },
             {
+                id: 'SW',
                 name: '김시우',
                 gender: '남성',
                 age: '21',
@@ -211,9 +214,11 @@
                 features: '前히키코모리 프로게이머. 사격 실력으로 카나리아에 입대했으나, 사실상 에임만 좋은 폐급이다.',
                 profileImage: 'SW_cowboyshot2.png',
                 thumbnail: 'https://picsum.photos/seed/sky9000/400/400?grayscale',
+                themeColor: '#e0e0e0',
                 quote: "뭐야, 그것도 못 한다고? ㅋㅋ 허접이네~"
             },
             {
+                id: 'HI',
                 name: '정해인',
                 gender: '여성',
                 age: '27',
@@ -223,21 +228,25 @@
                 features: '직업 군인. 팀의 정서적 기둥이나, 속으로는 부담감을 가지고 있다. 하지만 자신이 힘들어 하면 다른 팀원들은 훨씬 힘들 거라고 생각하며 참는 중. 몰즈를 벗어나고 싶어한다.',
                 profileImage: 'HI_cowboyshot2.png',
                 thumbnail: 'https://picsum.photos/seed/dullahan/400/400?grayscale',
+                themeColor: '#e0e0e0',
                 quote: "후후, 그렇게 뚫어져라 쳐다볼 필요 없어~"
             },
             {
+                id: 'TG',
                 name: '강태건',
                 gender: '남성',
-                age: '36',
+                age: '40',
                 affiliation: '모스',
                 appearance: '185cm. 머리는 매일 정리하면서도 수염은 가끔씩만 정리한다.',
                 personality: 'ISTJ+1w9 sp/so<br>지친 어른의 분위기가 물씬 풍긴다. 무뚝뚝하지만 뒤에서 챙겨준다.',
                 features: '직업 군인. 설아가 질서, 해인이 정서를 담당한다면 이쪽은... 김시우 혼내기를 담당한다.',
                 profileImage: 'TG_cowboyshot2.png',
                 thumbnail: 'https://picsum.photos/seed/beelze/400/400?grayscale',
+                themeColor: '#e0e0e0',
                 quote: "...왜 그러지? 도와줄 일이라도 있나?"
             },
             {
+                id: 'HA',
                 name: '김현아',
                 gender: '여성',
                 age: '25',
@@ -247,9 +256,11 @@
                 features: '모스의 대장이자 김현태의 누나. 1종 대형면허가 있으며, 대형트력으로 다 들이받는다. 동생이 너무 소심해서 걱정이 많다.',
                 profileImage: 'HA_cowboyshot2.png',
                 thumbnail: 'https://picsum.photos/seed/marcia/400/400?grayscale',
+                themeColor: '#e0e0e0',
                 quote: "빠릿빠릿하게 움직이라고 했지, 새끼야!"
             },
             {
+                id: 'HT',
                 name: '김현태',
                 gender: '남성',
                 age: '24',
@@ -259,9 +270,11 @@
                 features: '누나를 무서워한다. 간호 실력이 좋다.',
                 profileImage: 'HT_cowboyshot2.png',
                 thumbnail: 'https://picsum.photos/seed/rian/400/400?grayscale',
+                themeColor: '#e0e0e0',
                 quote: "저... 그러면 누나가 혼낼걸요..."
             },
             {
+                id: 'SN',
                 name: '슈퍼☆노바',
                 gender: '여성',
                 age: '22',
@@ -271,9 +284,11 @@
                 features: '락 애호가. 늘 붐박스를 들고다니며 락 음악을 재생해 놓는다. 신비주의를 지향한다. 과거는 밝히고 싶지 않은 모양이다. 미니건을 무기로 사용한다.',
                 profileImage: 'SN_cowboyshot2.png',
                 thumbnail: 'https://picsum.photos/seed/yeon/400/400?grayscale',
+                themeColor: '#e0e0e0',
                 quote: "세상에서 가장 밝게 빛나는 슈퍼노바 등장~"
             },
             {
+                id: 'DH',
                 name: '도현',
                 gender: '남성',
                 age: '24',
@@ -283,9 +298,11 @@
                 features: '장사치. 안정제 거래를 담당하고 있다. 감이 매우 좋다.',
                 profileImage: 'DH_cowboyshot2.png',
                 thumbnail: 'https://picsum.photos/seed/ex/400/400?grayscale',
+                themeColor: '#e0e0e0',
                 quote: "죽음은 끝이 아닙니다. 또 다른 체크인일 뿐."
             },
             {
+                id: 'M',
                 name: '마스크',
                 gender: '남성',
                 age: '33',
@@ -298,80 +315,69 @@
                 quote: "..."
             },
             {
-                id: 'V',
-                name: '404',
-                gender: '남성',
-                age: '404',
-                affiliation: '오류 데이터',
-                appearance: '몸의 절반이 노이즈로 덮여있다.',
-                personality: '말이 없고 묵묵히 쓸고 닦는다.',
-                features: '존재하지 않는 방을 청소하러 들어가는 모습이 목격된다.',
-                tmi: '그가 청소한 자리는 존재 자체가 지워집니다.',
-                profileImage: 'https://picsum.photos/seed/glitch-full/600/900?grayscale',
-                thumbnail: 'https://picsum.photos/seed/glitch/400/400?grayscale',
-                themeColor: '#00ff00',
-                quote: "Found... nothing."
-            },
-            {
-                id: 'G',
-                name: '그림자 소녀',
+                id: 'UR',
+                name: '최유림',
                 gender: '여성',
-                age: '10',
-                affiliation: '심연',
-                appearance: '검은 드레스를 입은 소녀. 발이 땅에 닿지 않는다.',
-                personality: '순수하지만 잔혹하다. 숨바꼭질을 좋아한다.',
-                features: '복도 끝에서 자주 발견된다.',
-                tmi: '절대 술래를 해서는 안 됩니다.',
-                profileImage: 'https://picsum.photos/seed/ghost-full/600/900?grayscale',
+                age: '25',
+                affiliation: '파이어플라이',
+                appearance: '162cm. 벨트에 달려있는 공구가 무거워 보일 정도로 많다.',
+                personality: 'ENFP+7w6 so/sx<br>활기차고 긍정적이다. 격려를 잘 해준다.',
+                features: '파이어플라이의 엔지니어. 손재주가 매우 뛰어나다. 유독 광기에 취약하다.',
+                profileImage: 'UR_cowboyshot2.png',
+                thumbnail: 'https://picsum.photos/seed/glitch/400/400?grayscale',
+                quote: "고칠 게 있다면 저에게 맡겨주세요!"
+            },
+            {
+                id: 'JH',
+                name: '유지훈',
+                gender: '남성',
+                age: '28',
+                affiliation: '파이어플라이',
+                appearance: '178cm. 앞머리가 자꾸 흘러내린다. 신기하게도 불편해 하지 않는다.',
+                personality: 'ISTJ+6w5 sp/so<br>이성적이고 까칠하다. 잔소리꾼.',
+                features: '외과 전문의 출신이다. 덕분에 파이어플라이 일원들은 의료면에서 비교적 좋은 환경에 있다. 결벽증이 있다.',
+                profileImage: 'JH_cowboyshot2.png',
                 thumbnail: 'https://picsum.photos/seed/ghost/400/400?grayscale',
-                themeColor: '#4a0404',
-                quote: "찾았다."
+                quote: "하... 약을 그렇게 많이 사용하면 안 된다니까요!"
             },
             {
-                id: 'X',
-                name: '실험체 07',
-                gender: '남성',
-                age: '19',
-                affiliation: '폐쇄된 연구소',
-                appearance: '구속복을 입고 있다. 얼굴이 붕대로 감겨있다.',
-                personality: '불안정하다. 주기적으로 발작을 일으킨다.',
-                features: '염력을 사용한다. 통제 불능.',
-                tmi: '진정제 투여가 시급합니다.',
-                profileImage: 'https://picsum.photos/seed/scpx-full/600/900?grayscale',
+                id: 'AR',
+                name: '한아라',
+                gender: '여성',
+                age: '23',
+                affiliation: '파이어플라이',
+                appearance: '159cm. 원피스가 그렇게 화려한 편은 아니지만, 아라 본인의 눈에는 아주 화려하게 보이는 모양이다.',
+                personality: 'INFP+4w3 so/sx<br>상냥하다. 아가씨의 표본 같은 성격.',
+                features: '세상을 동화처럼 보는 환각 속에 있다. 자신을 동화 속 아가씨라고 생각한다.',
+                profileImage: 'AR_cowboyshot2.png',
                 thumbnail: 'https://picsum.photos/seed/scpx/400/400?grayscale',
-                themeColor: '#ffff00',
-                quote: "머리가... 깨질 것 같아...",
-                isRedacted: true
+                quote: "어머, 귀여운 새네요! 돌덩이라고요? 무슨 소리인지 모르겠어요~",
             },
             {
-                id: 'P',
-                name: '도플갱어',
-                gender: '가변',
-                age: '가변',
-                affiliation: '거울 세계',
-                appearance: '당신과 똑같이 생겼다. 좌우가 반전되어 있다.',
-                personality: '당신의 자리를 탐낸다.',
-                features: '거울을 볼 때 조심하세요.',
-                tmi: '이미 당신과 교체되었을지도 모릅니다.',
-                profileImage: 'https://picsum.photos/seed/mirror-full/600/900?grayscale',
+                id: 'E',
+                name: '이브',
+                gender: '여성',
+                age: '28',
+                affiliation: '문플라워',
+                appearance: '165cm. 이런 환경에서도 옷을 깨끗하게 유지한다.',
+                personality: 'ESFJ+2w1 sp/so<br>마치 엄마 같다. 자애롭고 모두를 품어주려 한다.',
+                features: '다른 문플라워 일원들과는 달리 달을 보도록 강제하진 않는다. ...강조하지 않을 뿐이다.',
+                profileImage: 'E_cowboyshot2.png',
                 thumbnail: 'https://picsum.photos/seed/mirror/400/400?grayscale',
-                themeColor: '#cccccc',
-                quote: "내가 진짜야."
+                quote: "당신도 구원 받을 수 있도록, 도와드릴게요."
             },
             {
-                id: 'Z',
-                name: '더 매니저',
+                id: 'A',
+                name: '아담',
                 gender: '남성',
-                age: '???',
-                affiliation: '호텔 에필로그',
-                appearance: '정장을 입은 신사. 얼굴 부분이 검게 칠해진 것처럼 보이지 않는다.',
-                personality: '정중하지만 절대적인 권위를 가졌다.',
-                features: '호텔의 규칙 그 자체.',
-                tmi: '체크아웃은 허용되지 않습니다.',
-                profileImage: 'https://picsum.photos/seed/boss-full/600/900?grayscale',
-                thumbnail: 'https://picsum.photos/seed/boss/400/400?grayscale',
-                themeColor: '#000000',
-                quote: "영원히 편안하게 모시겠습니다."
+                age: '30',
+                affiliation: '문플라워',
+                appearance: '늘 랜턴을 들고 다닌다.',
+                personality: 'INTJ+1w9 so/sp<br>무뚝뚝하다. 마음이 인류애로 가득 차 있다.',
+                features: '랜턴으로 불을 질러 사람들이 밖으로 나오도록 강조한다. 자신은 \'구원\'을 위해 악당을 자처하고 있다고 생각한다.',
+                profileImage: 'A_cowboyshot.png',
+                thumbnail: 'A_cowboyshot2.png',
+                quote: "밖으로 나오십시오... 구원 받으십시오."
             }
         ];
 
