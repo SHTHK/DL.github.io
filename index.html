@@ -220,7 +220,7 @@
                 name: '정해인',
                 gender: '여성',
                 age: '27',
-                affiliation: '망자의 기사단',
+                affiliation: '몰즈-카나리아',
                 appearance: '166cm. 왼쪽 시력을 잃은 후 눈동사 색이 검은색으로 바뀌었다. 강아지 귀 같은 뻗친 머리가 좀처럼 가라앉지 않는다.',
                 personality: 'ENFJ+2w1 so/sp<br>누님 스타일. 뛰어난 분위기 메이커다. 위험한 상황에서 자기 희생을 하는 경향이 있다.',
                 features: '직업 군인. 팀의 정서적 기둥이나, 속으로는 부담감을 가지고 있다. 하지만 자신이 힘들어 하면 다른 팀원들은 훨씬 힘들 거라고 생각하며 참는 중. 몰즈를 벗어나고 싶어한다.',
@@ -233,7 +233,7 @@
                 name: '강태건',
                 gender: '남성',
                 age: '40',
-                affiliation: '모스',
+                affiliation: '몰즈-카나리아',
                 appearance: '185cm. 머리는 매일 정리하면서도 수염은 가끔씩만 정리한다.',
                 personality: 'ISTJ+1w9 sp/so<br>지친 어른의 분위기가 물씬 풍긴다. 무뚝뚝하지만 뒤에서 챙겨준다.',
                 features: '직업 군인. 설아가 질서, 해인이 정서를 담당한다면 이쪽은... 김시우 혼내기를 담당한다.',
@@ -246,7 +246,7 @@
                 name: '김현아',
                 gender: '여성',
                 age: '25',
-                affiliation: '용사 길드',
+                affiliation: '모스',
                 appearance: '156cm. 동안에 귀엽게 생겼지만 매일 얼굴을 구기고 다닌다.',
                 personality: 'ESTP+8w7 sx/so<br>외모와는 달리 입이 걸고 거침없다. 여장부 스타일. 자기 사람들은 잘 챙겨준다.',
                 features: '모스의 대장이자 김현태의 누나. 1종 대형면허가 있으며, 대형트력으로 다 들이받는다. 동생이 너무 소심해서 걱정이 많다.',
@@ -259,7 +259,7 @@
                 name: '김현태',
                 gender: '남성',
                 age: '24',
-                affiliation: '멸망한 제국',
+                affiliation: '모스',
                 appearance: '190cm. 덩치가 크다.',
                 personality: ' INFP+9w1 sp/so<br>소심하고 겁이 많다. 낯을 많이 가린다. 섬세해서 사람들을 잘 도와준다. 거절을 잘 못하는 것 같다.',
                 features: '누나를 무서워한다. 간호 실력이 좋다.',
@@ -288,7 +288,7 @@
                 affiliation: '모스',
                 appearance: '184cm. 빨간 선글라스 때문에 가끔 보고 있는 물건의 색깔을 착각한다. 그럼에도 쓰고 다니는 것을 보면 포기할 수 없는 패션인 듯.',
                 personality: 'ENTP+3w4 sp/so<br>기회주의자에 뻔뻔하다. 재수없게 굴지만 알고보면 착하다.',
-                features: '장사치. 안정제 거래를 담당하고 있다. 감이 매우 좋다.',
+                features: '장사치. 안정제 거래를 담당하고 있다. 감이 매우 좋다. 전투에서 늘 은근슬쩍 빠진다.',
                 profileImage: 'DH_cowboyshot2.png',
                 thumbnail: 'DH_TN.png',
                 quote: "이건 좀 비싼 건데~ 어허, 흥정 금지."
@@ -404,8 +404,6 @@
                         alt="${char.name}"
                         class="w-full h-full object-cover transition-all duration-500"
                       />
-                      <!-- Glitch Overlay on Hover -->
-                      <div class="absolute inset-0 bg-horror-moon/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-200 mix-blend-hard-light"></div>
                    </div>
 
                    <!-- Right: Info -->
@@ -456,7 +454,7 @@
                      <img 
                          src="${char.profileImage}" 
                          alt="${char.name}"
-                         class="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-1000"
+                         class="w-full h-full object-cover object-top"
                      />
                      
                      <div class="absolute bottom-4 left-4 z-20">
