@@ -145,7 +145,7 @@
             
             <div class="w-full max-w-2xl mx-auto h-px bg-gradient-to-r from-transparent via-horror-moon to-transparent opacity-30"></div>
             
-            <p class="text-horror-moon/60 font-mono text-xs md:text-sm tracking-[0.5em] animate-pulse">
+            <p class="text-horror-moon/60 font-mono text-sm md:text-base tracking-[0.5em] animate-pulse">
                 THE MOON IS WATCHING
             </p>
         </header>
@@ -156,7 +156,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="text-center text-horror-gray text-xs font-mono tracking-widest opacity-50 pb-10">
+        <footer class="text-center text-horror-gray text-sm font-mono tracking-widest opacity-50 pb-10">
             <p>EST. 199X • DO NOT DISTRIBUTE</p>
             <p class="mt-2">PHASE: WAXING CRESCENT</p>
         </footer>
@@ -175,7 +175,7 @@
              <div class="flex justify-between items-center p-3 border-b border-horror-gray bg-black/80 z-20">
                 <div class="flex items-center gap-2 text-horror-moon/70">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    <span class="tracking-[0.2em] uppercase text-xs md:text-sm font-bold animate-pulse">Character Record</span>
+                    <span class="tracking-[0.2em] uppercase text-sm md:text-base font-bold animate-pulse">Character Record</span>
                 </div>
                 <button id="modal-close-btn" class="hover:text-horror-red transition-colors text-horror-gray px-4 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -265,7 +265,7 @@
                 age: '24',
                 affiliation: '모스',
                 appearance: '190cm. 덩치가 크다.',
-                personality: ' INFP+9w1 sp/so<br>소심하고 겁이 많으며 낯을 가린다. 섬세해서 사람들을 잘 도와준다. 거절을 잘 못하는 것 같다.',
+                personality: ' INFP+9w1 sp/so<br>소심하고 겁이 많다. 낯을 많이 가린다. 섬세해서 사람들을 잘 도와준다. 거절을 잘 못하는 것 같다.',
                 features: '누나를 무서워한다. 간호 실력이 좋다.',
                 profileImage: 'HT_cowboyshot2.png',
                 thumbnail: 'HT_TN.png',
@@ -417,13 +417,13 @@
                       <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full ${redactedClass}"></div>
                       
                       <div class="flex flex-col md:flex-row md:items-baseline md:gap-4 mb-2">
-                        ${createGlitchText(char.name, 'h2', 'text-xl md:text-3xl font-typewriter text-horror-static block group-hover:text-white')}
-                        <span class="hidden md:inline-block text-xs font-mono text-horror-gray group-hover:text-horror-moon/70 transition-colors uppercase tracking-widest">
+                        ${createGlitchText(char.name, 'h2', 'text-2xl md:text-3xl font-typewriter text-horror-static block group-hover:text-white')}
+                        <span class="hidden md:inline-block text-sm font-mono text-horror-gray group-hover:text-horror-moon/70 transition-colors uppercase tracking-widest">
                            // ${char.affiliation}
                         </span>
                       </div>
                       
-                      <p class="text-xs md:text-sm text-horror-gray font-mono italic truncate border-l-2 border-horror-gray/50 pl-3 group-hover:border-horror-moon/50 group-hover:text-horror-moon/70 transition-colors w-full md:w-3/4">
+                      <p class="text-sm md:text-base text-horror-gray font-mono italic truncate border-l-2 border-horror-gray/50 pl-3 group-hover:border-horror-moon/50 group-hover:text-horror-moon/70 transition-colors w-full md:w-3/4">
                         "${char.quote}"
                       </p>
                    </div>
@@ -510,24 +510,24 @@
                         <!-- Core Stats Grid -->
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-6 border-y border-horror-gray/30 py-8 bg-white/5 p-6 backdrop-blur-sm">
                             <div>
-                                <span class="block text-gray-400 text-xs uppercase mb-1 tracking-widest">Gender</span>
+                                <span class="block text-gray-400 text-sm uppercase mb-1 tracking-widest">Gender</span>
                                 <span class="text-xl font-typewriter text-white font-bold">${char.gender}</span>
                             </div>
                             <div>
-                                <span class="block text-gray-400 text-xs uppercase mb-1 tracking-widest">Age</span>
+                                <span class="block text-gray-400 text-sm uppercase mb-1 tracking-widest">Age</span>
                                 <span class="text-xl font-typewriter text-white font-bold">${char.age}</span>
                             </div>
                             <div class="col-span-2 md:col-span-1">
-                                <span class="block text-gray-400 text-xs uppercase mb-1 tracking-widest">Affiliation</span>
+                                <span class="block text-gray-400 text-sm uppercase mb-1 tracking-widest">Affiliation</span>
                                 <span class="text-xl font-typewriter text-white font-bold">${char.affiliation}</span>
                             </div>
                         </div>
 
                         <!-- Detailed Info -->
-                        <div class="space-y-10 font-typewriter text-lg leading-relaxed text-horror-static/90">
+                        <div class="space-y-10 font-typewriter text-xl leading-relaxed text-horror-static/90">
                             
                             <section>
-                                <h3 class="text-horror-moon text-sm font-mono uppercase mb-3 flex items-center gap-2">
+                                <h3 class="text-horror-moon text-lg font-mono uppercase mb-3 flex items-center gap-2">
                                     <span class="w-2 h-2 bg-horror-moon rounded-full"></span> 
                                     Appearance
                                 </h3>
@@ -535,7 +535,7 @@
                             </section>
                             
                             <section>
-                                <h3 class="text-horror-moon text-sm font-mono uppercase mb-3 flex items-center gap-2">
+                                <h3 class="text-horror-moon text-lg font-mono uppercase mb-3 flex items-center gap-2">
                                     <span class="w-2 h-2 bg-horror-moon rounded-full"></span> 
                                     Personality Profile
                                 </h3>
@@ -543,7 +543,7 @@
                             </section>
                             
                             <section>
-                                <h3 class="text-horror-moon text-sm font-mono uppercase mb-3 flex items-center gap-2">
+                                <h3 class="text-horror-moon text-lg font-mono uppercase mb-3 flex items-center gap-2">
                                     <span class="w-2 h-2 bg-horror-moon rounded-full"></span> 
                                     Notable Features
                                 </h3>
