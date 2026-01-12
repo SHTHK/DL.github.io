@@ -151,7 +151,7 @@
         </header>
 
         <!-- Character List Container -->
-        <main id="character-list" class="flex flex-col gap-6 pb-20 max-w-4xl mx-auto w-full">
+        <main id="character-list" class="flex flex-col gap-6 pb-20 max-w-4xl mx-auto w-full z-10 relative">
             <!-- Items injected by JS -->
         </main>
 
@@ -177,7 +177,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                     <span class="tracking-[0.2em] uppercase text-xs md:text-sm font-bold animate-pulse">Character Record</span>
                 </div>
-                <button id="modal-close-btn" class="hover:text-horror-red transition-colors text-horror-gray px-4">
+                <button id="modal-close-btn" class="hover:text-horror-red transition-colors text-horror-gray px-4 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
             </div>
@@ -396,10 +396,11 @@
             CHARACTERS.forEach(char => {
                 const redactedClass = char.isRedacted ? 'bg-horror-red animate-pulse' : 'bg-horror-moon/50';
                 
+                // Using data-id and class for Event Delegation instead of inline onclick
                 html += `
                 <div 
-                  onclick="openModal('${char.id}')"
-                  class="group relative flex bg-black/60 border border-horror-gray/30 hover:border-horror-moon/50 hover:bg-black/80 transition-all duration-300 cursor-pointer overflow-hidden h-32 md:h-40 w-full shadow-lg"
+                  class="character-card group relative flex bg-black/60 border border-horror-gray/30 hover:border-horror-moon/50 hover:bg-black/80 transition-all duration-300 cursor-pointer overflow-hidden h-32 md:h-40 w-full shadow-lg"
+                  data-id="${char.id}"
                 >
                    <!-- Left: Square Thumbnail -->
                    <div class="w-32 md:w-40 h-full shrink-0 relative overflow-hidden border-r border-horror-gray/30">
@@ -439,9 +440,35 @@
         const modalBody = document.getElementById('modal-body');
         const closeBtn = document.getElementById('modal-close-btn');
 
-        function openModal(id) {
+        function _animateModalClose() {
+             if (modalContainer.classList.contains('hidden')) return;
+
+            modalBackdrop.classList.add('opacity-0');
+            modalContent.classList.remove('opacity-100', 'scale-100');
+            modalContent.classList.add('opacity-0', 'scale-95');
+            
+            setTimeout(() => {
+                modalContainer.classList.add('hidden');
+                modalBody.innerHTML = ''; // Clean up to stop any media/animations
+            }, 300);
+        }
+
+        // pushHistory param controls whether we push a new state or just update view
+        function openModal(id, pushHistory = true) {
             const char = CHARACTERS.find(c => c.id === id);
             if (!char) return;
+
+            if (pushHistory) {
+                // Safely try to push state. If it fails (e.g. rate limit or file://), just proceed.
+                try {
+                    // Only push if different to avoid stacking dupes if user hammers click
+                    if (location.hash !== `#${id}`) {
+                         history.pushState({ modalOpen: true, charId: id }, '', `#${id}`);
+                    }
+                } catch (e) {
+                    console.warn('History API not supported or restricted:', e);
+                }
+            }
 
             // Build Modal HTML
             const redactedAlert = char.isRedacted ? 
@@ -540,16 +567,39 @@
         }
 
         function closeModal() {
-            modalBackdrop.classList.add('opacity-0');
-            modalContent.classList.remove('opacity-100', 'scale-100');
-            modalContent.classList.add('opacity-0', 'scale-95');
-            
-            setTimeout(() => {
-                modalContainer.classList.add('hidden');
-            }, 300); // Wait for transition
+            // Navigate back in history. This triggers 'popstate' event which then runs _animateModalClose
+            // If we have a hash, it means we have history to pop.
+            if (location.hash) {
+                history.back();
+            } else {
+                // Fallback for visual close if no history
+                _animateModalClose();
+            }
         }
 
-        // Listeners
+        // Handle Browser Back/Forward Buttons
+        window.addEventListener('popstate', (event) => {
+            const hashId = location.hash.substring(1);
+            if (hashId) {
+                // If back/forward took us to a hash, open that character
+                openModal(hashId, false);
+            } else {
+                // If back took us to root, close modal
+                if (!modalContainer.classList.contains('hidden')) {
+                    _animateModalClose();
+                }
+            }
+        });
+
+        // Event Delegation for clicks on List Container
+        listContainer.addEventListener('click', (e) => {
+            const card = e.target.closest('.character-card');
+            if (card && card.dataset.id) {
+                openModal(card.dataset.id, true);
+            }
+        });
+
+        // Listeners for manual closing
         closeBtn.addEventListener('click', closeModal);
         modalBackdrop.addEventListener('click', closeModal);
         
@@ -560,8 +610,14 @@
             }
         });
 
-        // Initialize
+        // Initialize List
         renderList();
+
+        // Check for initial URL hash on page load
+        if (location.hash) {
+            const initialId = location.hash.substring(1);
+            openModal(initialId, false);
+        }
     </script>
 </body>
 </html>
